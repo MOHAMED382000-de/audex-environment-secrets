@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  audex-env-service:
+    image: node:18-alpine
+    container_name: audex_week3_service
+    working_dir: /app
+    ports:
+      - "${PORT:-3000}:3000"
+    env_file:
+      - .env.dev
+    command: >
+      sh -c "echo '=== Audex Environment Loaded Successfully ===' &&
+             echo 'Node Env: ' $$NODE_ENV &&
+             echo 'Audex Mode: ' $$AUDEX_ACTIVE_MODE &&
+             echo 'PII Masking: ' $$MASK_PII_DATA &&
+             tail -f /dev/null"
+    networks:
+      - audex-sec-net
+
+networks:
+  audex-sec-net:
+    driver: bridge

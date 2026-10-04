@@ -1,0 +1,10 @@
+.env
+.env.dev
+.env.test
+.env.staging
+*.env
+
+node_modules/
+dist/
+npm-debug.log
+.DS_Store
